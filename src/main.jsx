@@ -1,10 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import TodoApp from "./TodoApp";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import "../dist/index.css";
+import { TodoProvider } from "./components/context/TodoProvider";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <TodoProvider>
+    <React.StrictMode>
+      <TodoApp />
+    </React.StrictMode>
+  </TodoProvider>
+);
