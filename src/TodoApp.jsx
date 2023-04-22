@@ -40,18 +40,22 @@ function TodoApp() {
         error={error}
         loading={loading}
         openModal={openModal}
+        filteredTodo={filteredTodo}
       >
         {error && <p>Something went wrong.</p>}
         {loading && <p>It's loading...</p>}
         {!loading && !todos.length && <p>Create your first Todo</p>}
-
-        {}
-
-        <TodoItem
-          todos={todos}
-          toggleTodoCompleted={toggleTodoCompleted}
-          toggleTodoDelete={toggleTodoDelete}
-        ></TodoItem>
+        <ul className="w-full h-auto flex flex-col items-center gap-3">
+          {filteredTodo.map(({ title, completed }) => (
+            <TodoItem
+              key={title}
+              title={title}
+              completed={completed}
+              toggleTodoCompleted={toggleTodoCompleted}
+              toggleTodoDelete={toggleTodoDelete}
+            />
+          ))}
+        </ul>
       </TodoList>
       <CreateTodoButton handleOpenModal={handleOpenModal} />
     </div>
