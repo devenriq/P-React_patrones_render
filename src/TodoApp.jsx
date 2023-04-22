@@ -13,6 +13,8 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import "../dist/index.css";
 import { useTodos } from "./components/hooks/useTodos";
 import Modal from "./components/modal/Modal";
+import { TodoLoading } from "./components/TodoLoading/TodoLoading";
+import { EmptyTodos } from "./components/EmptyTodos/EmptyTodos";
 
 function TodoApp() {
   const {
@@ -36,7 +38,36 @@ function TodoApp() {
     <div className="w-full h-screen bg-red-800 bg-opacity-20">
       <TodoCounter completedTodo={completedTodo} pendingTodo={pendingTodo} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+
       <TodoList
+        todos={todos}
+        searchValue={searchValue}
+        toggleTodoCompleted={toggleTodoCompleted}
+        toggleTodoDelete={toggleTodoDelete}
+        error={error}
+        loading={loading}
+        openModal={openModal}
+        filteredTodo={filteredTodo}
+        onError={() => <TodoError />}
+        onLoading={() => <TodoLoading />}
+        onEmptyTodos={() => <EmptyTodos />}
+        render={({ title, completed }) => (
+          <TodoItem
+            key={title}
+            title={title}
+            completed={completed}
+            toggleTodoCompleted={toggleTodoCompleted}
+            toggleTodoDelete={toggleTodoDelete}
+          />
+        )}
+      />
+
+      {/* {!!openModal && (
+              <Modal>
+                <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
+              </Modal>
+            )} */}
+      {/* <TodoList
         todos={todos}
         searchValue={searchValue}
         toggleTodoCompleted={toggleTodoCompleted}
@@ -59,15 +90,10 @@ function TodoApp() {
               toggleTodoDelete={toggleTodoDelete}
             />
           ))}
-          {!!openModal && (
-            <Modal>
-              <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
-            </Modal>
-          )}
-
-          <PlusCircleIcon className="text-purple-400 w-20 h-20" />
         </ul>
-      </TodoList>
+
+        <PlusCircleIcon className="text-purple-400 w-20 h-20" />
+      </TodoList> */}
       <CreateTodoButton handleOpenModal={handleOpenModal} />
     </div>
   );
