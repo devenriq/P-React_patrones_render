@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { TodoContext } from "./TodoContext";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useLocalStorage } from "./useLocalStorage";
 
-export const TodoProvider = ({ children }) => {
+export const useTodos = () => {
   const {
     item: todos,
     saveItem: saveTodos,
@@ -50,26 +49,20 @@ export const TodoProvider = ({ children }) => {
     return lowerTitle.includes(searchValue.toLowerCase());
   });
 
-  return (
-    <TodoContext.Provider
-      value={{
-        todos,
-        saveTodos,
-        loading,
-        error,
-        searchValue,
-        setSearchValue,
-        toggleTodoCompleted,
-        toggleTodoDelete,
-        completedTodo,
-        pendingTodo,
-        openModal,
-        handleOpenModal,
-        addTodo,
-        filteredTodo,
-      }}
-    >
-      {children}
-    </TodoContext.Provider>
-  );
+  return {
+    todos,
+    saveTodos,
+    loading,
+    error,
+    searchValue,
+    setSearchValue,
+    toggleTodoCompleted,
+    toggleTodoDelete,
+    completedTodo,
+    pendingTodo,
+    openModal,
+    handleOpenModal,
+    addTodo,
+    filteredTodo,
+  };
 };

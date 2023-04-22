@@ -5,10 +5,14 @@ import {
   CreateTodoButton,
   TodoContext,
   TodoItem,
+  TodoForm,
 } from "./components";
 
+import { PlusCircleIcon } from "@heroicons/react/24/solid";
+
 import "../dist/index.css";
-import { useContext } from "react";
+import { useTodos } from "./components/hooks/useTodos";
+import Modal from "./components/modal/Modal";
 
 function TodoApp() {
   const {
@@ -26,7 +30,7 @@ function TodoApp() {
     handleOpenModal,
     addTodo,
     filteredTodo,
-  } = useContext(TodoContext);
+  } = useTodos();
 
   return (
     <div className="w-full h-screen bg-red-800 bg-opacity-20">
@@ -55,6 +59,13 @@ function TodoApp() {
               toggleTodoDelete={toggleTodoDelete}
             />
           ))}
+          {!!openModal && (
+            <Modal>
+              <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
+            </Modal>
+          )}
+
+          <PlusCircleIcon className="text-purple-400 w-20 h-20" />
         </ul>
       </TodoList>
       <CreateTodoButton handleOpenModal={handleOpenModal} />
