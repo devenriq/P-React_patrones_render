@@ -45,6 +45,11 @@ export const TodoProvider = ({ children }) => {
   const completedTodo = todos.filter((todo) => !!todo.completed).length;
   const pendingTodo = todos.filter((todo) => !todo.completed).length;
 
+  const filteredTodo = todos.filter(({ title }) => {
+    const lowerTitle = title.toLowerCase();
+    return lowerTitle.includes(searchValue.toLowerCase());
+  });
+
   return (
     <TodoContext.Provider
       value={{
@@ -61,6 +66,7 @@ export const TodoProvider = ({ children }) => {
         openModal,
         handleOpenModal,
         addTodo,
+        filteredTodo,
       }}
     >
       {children}
