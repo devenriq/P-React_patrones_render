@@ -1,3 +1,6 @@
+import { TodoForm } from "../TodoForm/TodoForm";
+import Modal from "../modal/Modal";
+
 export const TodoList = ({
   children,
   error,
@@ -6,6 +9,9 @@ export const TodoList = ({
   onError,
   filteredTodo,
   render,
+  openModal,
+  addTodo,
+  handleOpenModal,
 }) => {
   return (
     <ul className="w-full h-auto flex flex-col items-center gap-3">
@@ -17,6 +23,12 @@ export const TodoList = ({
       {filteredTodo.map(render)}
 
       <>{children} </>
+
+      {!!openModal && (
+        <Modal>
+          <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
+        </Modal>
+      )}
     </ul>
   );
 };

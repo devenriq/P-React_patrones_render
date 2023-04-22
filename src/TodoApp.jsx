@@ -48,6 +48,8 @@ function TodoApp() {
         loading={loading}
         openModal={openModal}
         filteredTodo={filteredTodo}
+        addTodo={addTodo}
+        handleOpenModal={handleOpenModal}
         onError={() => <TodoError />}
         onLoading={() => <TodoLoading />}
         onEmptyTodos={() => <EmptyTodos />}
@@ -62,38 +64,6 @@ function TodoApp() {
         )}
       />
 
-      {/* {!!openModal && (
-              <Modal>
-                <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
-              </Modal>
-            )} */}
-      {/* <TodoList
-        todos={todos}
-        searchValue={searchValue}
-        toggleTodoCompleted={toggleTodoCompleted}
-        toggleTodoDelete={toggleTodoDelete}
-        error={error}
-        loading={loading}
-        openModal={openModal}
-        filteredTodo={filteredTodo}
-      >
-        {error && <p>Something went wrong.</p>}
-        {loading && <p>It's loading...</p>}
-        {!loading && !todos.length && <p>Create your first Todo</p>}
-        <ul className="w-full h-auto flex flex-col items-center gap-3">
-          {filteredTodo.map(({ title, completed }) => (
-            <TodoItem
-              key={title}
-              title={title}
-              completed={completed}
-              toggleTodoCompleted={toggleTodoCompleted}
-              toggleTodoDelete={toggleTodoDelete}
-            />
-          ))}
-        </ul>
-
-        <PlusCircleIcon className="text-purple-400 w-20 h-20" />
-      </TodoList> */}
       <CreateTodoButton handleOpenModal={handleOpenModal} />
     </div>
   );
