@@ -6,15 +6,15 @@ import {
   TodoContext,
   TodoItem,
   TodoForm,
+  TodoLoading,
+  EmptyResults,
+  EmptyTodos,
 } from "./components";
 
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 
 import "../dist/index.css";
 import { useTodos } from "./components/hooks/useTodos";
-import Modal from "./components/modal/Modal";
-import { TodoLoading } from "./components/TodoLoading/TodoLoading";
-import { EmptyTodos } from "./components/EmptyTodos/EmptyTodos";
 
 function TodoApp() {
   const {
@@ -32,27 +32,34 @@ function TodoApp() {
     handleOpenModal,
     addTodo,
     filteredTodo,
+    totalTodos,
   } = useTodos();
 
   return (
     <div className="w-full h-screen bg-red-800 bg-opacity-20">
       <TodoCounter completedTodo={completedTodo} pendingTodo={pendingTodo} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoSearch
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+        loading={loading}
+      />
 
       <TodoList
-        todos={todos}
-        searchValue={searchValue}
-        toggleTodoCompleted={toggleTodoCompleted}
-        toggleTodoDelete={toggleTodoDelete}
+        addTodo={addTodo}
         error={error}
+        filteredTodo={filteredTodo}
+        handleOpenModal={handleOpenModal}
         loading={loading}
         openModal={openModal}
-        filteredTodo={filteredTodo}
-        addTodo={addTodo}
-        handleOpenModal={handleOpenModal}
+        searchValue={searchValue}
+        todos={todos}
+        toggleTodoCompleted={toggleTodoCompleted}
+        toggleTodoDelete={toggleTodoDelete}
+        totalTodos={totalTodos}
         onError={() => <TodoError />}
         onLoading={() => <TodoLoading />}
         onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearchResults={() => <EmptyResults searchValue={searchValue} />}
         render={({ title, completed }) => (
           <TodoItem
             key={title}
@@ -62,7 +69,7 @@ function TodoApp() {
             toggleTodoDelete={toggleTodoDelete}
           />
         )}
-      />
+      ></TodoList>
 
       <CreateTodoButton handleOpenModal={handleOpenModal} />
     </div>

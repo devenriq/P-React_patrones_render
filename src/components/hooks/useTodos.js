@@ -49,6 +49,8 @@ export const useTodos = () => {
     return lowerTitle.includes(searchValue.toLowerCase());
   });
 
+  const totalTodos = completedTodo + pendingTodo;
+
   return {
     todos,
     saveTodos,
@@ -64,5 +66,6 @@ export const useTodos = () => {
     handleOpenModal,
     addTodo,
     filteredTodo,
+    totalTodos,
   };
 };

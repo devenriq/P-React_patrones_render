@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
 
-export const TodoSearch = ({ searchValue, setSearchValue }) => {
+export const TodoSearch = ({ searchValue, setSearchValue, loading }) => {
   const onSearchValueChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -14,6 +14,7 @@ export const TodoSearch = ({ searchValue, setSearchValue }) => {
         placeholder="Escribe un todo"
         value={searchValue}
         onChange={onSearchValueChange}
+        disabled={loading}
       />
     </div>
   );

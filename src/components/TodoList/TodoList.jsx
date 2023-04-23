@@ -8,25 +8,32 @@ export const TodoList = ({
   onLoading,
   onError,
   filteredTodo,
+  totalTodos,
   render,
   openModal,
   addTodo,
   handleOpenModal,
+  onEmptyTodos,
+  onEmptySearchResults,
 }) => {
+  const renderFunc = children || render;
+
   return (
     <ul className="w-full h-auto flex flex-col items-center gap-3">
       {error && onError()}
       {loading && onLoading()}
 
-      {!loading && !filteredTodo.length && onEmptyTodos()}
+      {!loading && !totalTodos && onEmptyTodos()}
 
-      {filteredTodo.map(render)}
+      {!!totalTodos && !filteredTodo.length && onEmptySearchResults()}
+
+      {filteredTodo.map(renderFunc)}
 
       <>{children} </>
 
       {!!openModal && (
         <Modal>
-          <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
+          <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModa} />
         </Modal>
       )}
     </ul>
