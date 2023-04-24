@@ -15,6 +15,7 @@ import { PlusCircleIcon } from "@heroicons/react/24/solid";
 
 import "../dist/index.css";
 import { useTodos } from "./components/hooks/useTodos";
+import { ChangeAlert } from "./components/ChangeAlert/ChangeAlert";
 
 function TodoApp() {
   const {
@@ -72,6 +73,7 @@ function TodoApp() {
       ></TodoList>
 
       <CreateTodoButton handleOpenModal={handleOpenModal} />
+      <ChangeAlert />
     </div>
   );
 }

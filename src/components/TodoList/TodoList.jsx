@@ -33,7 +33,7 @@ export const TodoList = ({
 
       {!!openModal && (
         <Modal>
-          <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModa} />
+          <TodoForm addTodo={addTodo} handleOpenModal={handleOpenModal} />
         </Modal>
       )}
     </ul>
